@@ -25,7 +25,7 @@ public class TestMovieRental extends TestCase
 		assertEquals("Rentals: John Hood\n" + "4 days of 'Matrix' $5.0\n" + "5 days of 'Matrix2' $15.0\n"
 				+ "Total = $20.0\n" + "Frequent renter points = 3\n" + "---\n", customer.statement());
 	}
-	/*---- public void testHtmlCustomer() {
+	public void testHtmlCustomer() {
 		customer.addRental(rentMatrix);
 		customer.addRental(rentMatrix2);
 		assertEquals("<html><head><title>Rentals: John Hood</title></head><body>\n"+
@@ -38,5 +38,4 @@ public class TestMovieRental extends TestCase
 			     "</body></html>\n",
 			     customer.htmlStatement());
 	}
-	--- */
 }

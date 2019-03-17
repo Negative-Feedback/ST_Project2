@@ -3,7 +3,7 @@ import java.util.*;
 public class Customer
 {
 	private String name;
-	private List rentals = new ArrayList();
+	private ArrayList<Rental> rentals = new ArrayList<Rental>();
 
 	public Customer(String name)
 	{
@@ -19,35 +19,38 @@ public class Customer
 	{
 		rentals.add(arg);
 	}
-
 	
 	public String statement()
 	{
+		return statement(new TextReport());
+	}
+	
+	public String htmlStatement()
+	{
+		return statement(new HtmlReport());
+	}
+	
+	public String statement(Report report)
+	{
 		double totalAmount = 0;
 		int frequentRenterPoints = 0;
-		Iterator rentalIterator = rentals.iterator();
-		String result = "Rentals: " + getName() + "\n";
-		while (rentalIterator.hasNext())
+		String result = report.headerLine(getName());
+		
+		for (Rental rental : rentals)
 		{
-			Rental each = (Rental) rentalIterator.next();
-			double thisAmount = each.charge();
+			double thisAmount = rental.charge();
+			
+			frequentRenterPoints += rental.frequentRenterPoints();
 
-			// add frequent renter points
-			frequentRenterPoints++;
-			// add bonus for a two day new release rental
-			if ((each.getMovie().getPriceCode() == Movie.NEW_RELEASE) && each.getDaysRented() > 1)
-				frequentRenterPoints++;
-
-			// show figures for this rental
-			result += each.getDaysRented() + " days of '" + each.getMovie().getTitle() + "' $"
-					+ String.valueOf(thisAmount) + "\n";
+			result += rental.rentalLine(report);
+			
 			totalAmount += thisAmount;
 		}
 
 		// add footer lines
-		result += "Total = $" + totalAmount + "\n";
-		result += "Frequent renter points = " + frequentRenterPoints + "\n";
-		return result + "---\n";
+		result += report.footerLine(totalAmount, frequentRenterPoints);
+		return result;
 	}
+	
 
 }

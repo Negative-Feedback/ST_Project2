@@ -9,39 +9,26 @@ public class Rental
 		this.movie = movie;
 		this.daysRented = daysRented;
 	}
-
-	public int getDaysRented()
-	{
-		return daysRented;
-	}
-
-	public Movie getMovie()
-	{
-		return movie;
-	}
 	
 	public double charge()
 	{
-		double charge = 0;
-		// determine amounts for each line
-
-		switch (getMovie().getPriceCode())
+		return movie.charge(daysRented);
+	}
+	
+	public int frequentRenterPoints()
+	{
+		int points = 1;
+		
+		if (movie.isNewRelease() && daysRented > 1)
 		{
-			case Movie.REGULAR:
-				charge += 2;
-				if (getDaysRented() > 2)
-					charge += (getDaysRented() - 2) * 1.5;
-				break;
-			case Movie.NEW_RELEASE:
-				charge += getDaysRented() * 3;
-				break;
-			case Movie.CHILDRENS:
-				charge += 1.5;
-				if (getDaysRented() > 3)
-					charge += (getDaysRented() - 3) * 1.5;
-				break;
+			points++;
 		}
 		
-		return charge;
+		return points;
+	}
+	
+	public String rentalLine(Report report)
+	{	
+		 return report.rentalLine(daysRented, movie.getTitle(), charge());
 	}
 }
