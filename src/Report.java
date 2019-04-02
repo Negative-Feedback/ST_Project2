@@ -1,3 +1,4 @@
+// Report interface
 public interface Report
 {
 	public String headerLine(String name);

@@ -1,6 +1,7 @@
+// implementation of Report interface
 public class TextReport implements Report
 {
-	
+	// Empty constructor
 	public TextReport()
 	{
 	}

@@ -1,6 +1,7 @@
+// Rental class
 public class Rental
 {
-
+	// movie and the # of days rented
 	private Movie movie;
 	private int daysRented;
 
@@ -15,6 +16,7 @@ public class Rental
 		return movie.charge(daysRented);
 	}
 	
+	// calculates points for rental
 	public int frequentRenterPoints()
 	{
 		int points = 1;

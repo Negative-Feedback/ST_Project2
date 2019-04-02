@@ -1,7 +1,9 @@
 import java.util.*;
 
+// Customer class
 public class Customer
 {
+	// Name of customer and list of thier rentals
 	private String name;
 	private ArrayList<Rental> rentals = new ArrayList<Rental>();
 
@@ -20,16 +22,19 @@ public class Customer
 		rentals.add(arg);
 	}
 	
+	// Creates bill for the customer in text
 	public String statement()
 	{
 		return statement(new TextReport());
 	}
 	
+	// Creates bill for the customer in html 
 	public String htmlStatement()
 	{
 		return statement(new HtmlReport());
 	}
 	
+	// Calculates the the cost for the statement
 	public String statement(Report report)
 	{
 		double totalAmount = 0;

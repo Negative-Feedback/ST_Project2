@@ -1,12 +1,16 @@
+// Movie class
 public class Movie
 {
+	// Rental costs
 	public static final int CHILDRENS = 2;
 	public static final int REGULAR = 0;
 	public static final int NEW_RELEASE = 1;
-
+	
+	// title and price of movie
 	private String title;
 	private int priceCode;
 
+	// Movie constructor
 	public Movie(String title, int priceCode)
 	{
 		this.title = title;
@@ -38,6 +42,7 @@ public class Movie
 		return false;
 	}
 	
+	// calculates cost of rental
 	public double charge(int daysRented)
 	{
 		double charge = 0;
